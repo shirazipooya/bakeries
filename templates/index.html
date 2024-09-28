@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+<html lang="en" class="light-style layout-menu-fixed layout-compact" dir="rtl" data-theme="theme-default"
+  data-assets-path="../assets/" data-template="horizontal-menu">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+  <title>HydroCode</title>
+
+  <meta name="description" content="" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+  <link rel="stylesheet" href="../assets/vendor/fonts/fontawesome.css" />
+  <link rel="stylesheet" href="../assets/vendor/fonts/flag-icons.css" />
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="../assets/vendor/css/rtl/core.css" class="template-customizer-core-css" />
+  <link rel="stylesheet" href="../assets/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
+  <link rel="stylesheet" href="../assets/css/demo.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+
+  <!-- Vendors CSS -->
+  <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+  <link rel="stylesheet" href="../assets/vendor/libs/typeahead-js/typeahead.css" />
+  <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
+  <link rel="stylesheet" href="../assets/vendor/libs/leaflet/leaflet.css" />
+  <link rel="stylesheet" href="../assets/vendor/libs/leaflet-marker-cluster/MarkerCluster.Default.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/quill/typography.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/quill/katex.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/quill/editor.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/select2/select2.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/dropzone/dropzone.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/flatpickr/flatpickr.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/tagify/tagify.css" />
+  <link rel="stylesheet" href="../../assets/vendor/libs/@form-validation/umd/styles/index.min.css" />
+
+  <!-- Page CSS -->
+
+  <!-- Helpers -->
+  <script src="../assets/vendor/js/helpers.js"></script>
+  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!--? Template customizer: To hide customizer set displayCustomizer value false in config.js.  -->
+  <script src="../assets/vendor/js/template-customizer.js"></script>
+  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+  <script src="../assets/js/config.js"></script>
+</head>
+
+<body>
+  <!-- Layout wrapper -->
+  <div class="layout-wrapper layout-navbar-full layout-horizontal layout-without-menu">
+    <div class="layout-container">
+      <!-- Navbar -->
+
+      <nav class="layout-navbar navbar navbar-expand-xl align-items-center bg-navbar-theme" id="layout-navbar">
+        <div class="container-xxl">
+          <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
+            <a href="index.html" class="app-brand-link gap-2">
+              <img src="/assets/img/HydroCode.png" alt="HydroCode" width="60" />
+              <span class="app-brand-text demo menu-text fw-bold">هیدروکُد</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">
+              <i class="bx bx-x bx-sm align-middle"></i>
+            </a>
+          </div>
+
+          <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+              <i class="bx bx-menu bx-sm"></i>
+            </a>
+          </div>
+
+          <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <div class="navbar-nav align-items-center">
+              <div class="nav-item dropdown-style-switcher dropdown me-2 me-xl-0">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <i class="bx bx-sm"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-start dropdown-styles">
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0);" data-theme="light">
+                      <span class="align-middle"><i class="bx bx-sun me-2"></i>Light</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0);" data-theme="dark">
+                      <span class="align-middle"><i class="bx bx-moon me-2"></i>Dark</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="javascript:void(0);" data-theme="system">
+                      <span class="align-middle"><i class="bx bx-desktop me-2"></i>System</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <ul class="navbar-nav flex-row align-items-center ms-auto">
+              <!-- User -->
+              <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                  <div class="avatar avatar-online">
+                    <img src="../assets/img/avatars/1.png" alt class="rounded-circle" />
+                  </div>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0 me-3">
+                          <div class="avatar avatar-online">
+                            <img src="../assets/img/avatars/1.png" alt class="rounded-circle" />
+                          </div>
+                        </div>
+                        <div class="flex-grow-1">
+                          <span class="fw-medium d-block lh-1">پویا شیرازی</span>
+                          <small>مدیر سیستم</small>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bx bx-user me-2"></i>
+                      <span class="align-middle">پروفایل من</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bx bx-cog me-2"></i>
+                      <span class="align-middle">تنظیمات</span>
+                    </a>
+                  </li>
+                  <li>
+                    <div class="dropdown-divider"></div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">
+                      <i class="bx bx-power-off me-2"></i>
+                      <span class="align-middle">خروج</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!--/ User -->
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- / Navbar -->
+
+      <!-- Layout container -->
+      <div class="layout-page">
+        <!-- Content wrapper -->
+        <div class="content-wrapper">
+          <!-- Menu -->
+          <aside id="layout-menu" class="layout-menu-horizontal menu-horizontal menu bg-menu-theme flex-grow-0">
+            <div class="container-xxl d-flex h-100">
+              <ul class="menu-inner py-1">
+                <!-- Page -->
+                <li class="menu-item active">
+                  <a href="index.html" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div>داشبورد</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="#" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div>تنظیمات</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          <!-- / Menu -->
+
+          <!-- Content -->
+
+          <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row">
+
+              <div class="col-md-12 mb-2">
+                <div class="divider">
+                  <div class="divider-text fs-4">خلاصه پایگاه داده</div>
+                </div>
+              </div>
+
+              <!-- Top Referrals -->
+              <div class="col-md-6 col-xl-4 col-xxl-3 order-3 order-lg-0 mb-4 text-center">
+                  <div class="card h-100">
+                    <div class="card-body justify-content-center align-items-center ">
+                      <div class="avatar avatar-md mx-auto mb-3">
+                        <span class="avatar-initial rounded-circle bg-label-info"><i class="bx bx-home fs-2"></i></span>
+                      </div>
+                      <span class="d-block mb-3 text-nowrap">تعداد کل نانوایی‌ها</span>
+                      <h1 class="display-1"><span id="numberBakers">-</span></h1>
+                    </div>
+                  </div>
+              </div>
+              <!--/ Top Referrals -->
+
+              <!-- BreadRations -->
+              <div class="col-md-6 col-xl-4 col-xxl-3 order-3 order-lg-0 mb-4">
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h4 class="card-title mb-2">سهمیه (تعداد کیسه)</h4>
+                    <span class="fw-normal mb-0">واحد: تعداد نانوایی‌ها</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="progress progress-stacked mb-3" style="height: 8px">
+                      <div id="BreadRations_A_Bar" class="progress-bar bg-success m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_B_Bar" class="progress-bar bg-danger m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_C_Bar" class="progress-bar bg-warning m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_D_Bar" class="progress-bar bg-primary m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_E_Bar" class="progress-bar bg-dark m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_F_Bar" class="progress-bar bg-info m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_G_Bar" class="progress-bar bg-light m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="BreadRations_H_Bar" class="progress-bar bg-secondary m-0" role="progressbar"
+                        style="width: 12.5%" aria-valuenow="12.5" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <ul class="p-0 m-0">
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-success me-2"></span>
+                          <span id="BreadRations_A_Name">50 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_A_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_A_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-danger me-2"></span>
+                          <span id="BreadRations_B_Name">100 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_B_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_B_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-warning me-2"></span>
+                          <span id="BreadRations_C_Name">150 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_C_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_C_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-primary me-2"></span>
+                          <span id="BreadRations_D_Name">200 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_D_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_D_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-dark me-2"></span>
+                          <span id="BreadRations_E_Name">250 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_E_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_E_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-info me-2"></span>
+                          <span id="BreadRations_F_Name">300 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_F_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_F_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-light me-2"></span>
+                          <span id="BreadRations_G_Name">350 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_G_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_G_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-secondary me-2"></span>
+                          <span id="BreadRations_H_Name">400 کیسه</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="BreadRations_H_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="BreadRations_H_Count">-</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- / BreadRations -->
+
+              <!-- TypeBread -->
+              <div class="col-md-6 col-xl-4 col-xxl-3 order-3 order-lg-0 mb-4">
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h4 class="card-title mb-2">نوع پخت</h4>
+                    <span class="fw-normal mb-0">واحد: تعداد نانوایی‌ها</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="progress progress-stacked mb-3" style="height: 8px">
+                      <div id="TypeBread_A_Bar" class="progress-bar bg-success m-0" role="progressbar"
+                        style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeBread_B_Bar" class="progress-bar bg-danger m-0" role="progressbar" style="width: 25%"
+                        aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeBread_C_Bar" class="progress-bar bg-warning m-0" role="progressbar"
+                        style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeBread_D_Bar" class="progress-bar bg-primary m-0" role="progressbar"
+                        style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <ul class="p-0 m-0">
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-success me-2"></span>
+                          <span id="TypeBread_A_Name">سنگک</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeBread_A_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeBread_A_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-danger me-2"></span>
+                          <span id="TypeBread_B_Name">بربری</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeBread_B_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeBread_B_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-warning me-2"></span>
+                          <span id="TypeBread_C_Name">تافتون</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeBread_C_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeBread_C_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-primary me-2"></span>
+                          <span id="TypeBread_D_Name">لواش</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeBread_D_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeBread_D_Count">-</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- / TypeBread -->
+
+              <!-- TypeFlour -->
+              <div class="col-md-6 col-xl-4 col-xxl-3 order-3 order-lg-0 mb-4">
+                <div class="card h-100">
+                  <div class="card-header">
+                    <h4 class="card-title mb-2">نوع آرد</h4>
+                    <span class="fw-normal mb-0">واحد: تعداد نانوایی‌ها</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="progress progress-stacked mb-3" style="height: 8px">
+                      <div id="TypeFlour_A_Bar" class="progress-bar bg-success m-0" role="progressbar"
+                        style="width: 16.67%" aria-valuenow="16.67" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeFlour_B_Bar" class="progress-bar bg-danger m-0" role="progressbar"
+                        style="width: 16.67%" aria-valuenow="16.67" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeFlour_C_Bar" class="progress-bar bg-warning m-0" role="progressbar"
+                        style="width: 16.67%" aria-valuenow="16.67" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeFlour_D_Bar" class="progress-bar bg-primary m-0" role="progressbar"
+                        style="width: 16.67%" aria-valuenow="16.67" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeFlour_E_Bar" class="progress-bar bg-dark m-0" role="progressbar"
+                        style="width: 16.67%" aria-valuenow="16.67" aria-valuemin="0" aria-valuemax="100"></div>
+                      <div id="TypeFlour_F_Bar" class="progress-bar bg-info m-0" role="progressbar"
+                        style="width: 16.67%" aria-valuenow="16.67" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                    <ul class="p-0 m-0">
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-success me-2"></span>
+                          <span id="TypeFlour_A_Name">نوع 1</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeFlour_A_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeFlour_A_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-danger me-2"></span>
+                          <span id="TypeFlour_B_Name">نوع 2</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeFlour_B_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeFlour_B_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-warning me-2"></span>
+                          <span id="TypeFlour_C_Name">نوع 3</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeFlour_C_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeFlour_C_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-primary me-2"></span>
+                          <span id="TypeFlour_D_Name">نوع 4</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeFlour_D_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeFlour_D_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-dark me-2"></span>
+                          <span id="TypeFlour_E_Name">نوع 5</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeFlour_E_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeFlour_E_Count">-</span>
+                        </div>
+                      </li>
+
+                      <li class="mb-2 d-flex justify-content-between">
+                        <div class="d-flex align-items-center lh-1 me-3">
+                          <span class="badge badge-dot bg-info me-2"></span>
+                          <span id="TypeFlour_F_Name">نوع 6</span>
+                        </div>
+                        <div class="d-flex gap-1">
+                          <span id="TypeFlour_F_Percent" class="text-muted">(-)</span>
+                          <span class="fw-semibold" id="TypeFlour_F_Count">-</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- / TypeFlour -->
+
+            </div>
+
+            <div class="row">
+              <!-- BakersRisk -->
+              <div class="col-md-12 col-lg-6 col-xl-6 mb-4">
+                <div class="card h-100">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                    <div class="card-title mb-0">
+                      <h5 class="m-0 me-2 mb-2">ریسک نانوا</h5>
+                      <small class="text-muted">واحد: تعداد نانوایی‌ها</small>
+                    </div>
+                  </div>
+                  <div class="card-body pb-0">
+                    <div id="bakersRiskBarChart"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- / BakersRisk -->
+
+              <!-- HouseholdRisk -->
+              <div class="col-md-12 col-lg-6 col-xl-6 mb-4">
+                <div class="card h-100">
+                  <div class="card-header d-flex align-items-center justify-content-between">
+                    <div class="card-title mb-0">
+                      <h5 class="m-0 me-2 mb-2">ریسک خانوار</h5>
+                      <small class="text-muted">واحد: تعداد نانوایی‌ها</small>
+                    </div>
+                  </div>
+                  <div class="card-body pb-0">
+                    <div id="householdRiskBarChart"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- / HouseholdRisk -->
+            </div>
+
+            <!-- Controler and Map -->
+            <div class="row">
+              <div class="col-md-12 mb-2">
+                <div class="divider">
+                  <div class="divider-text fs-4">نقشه نانوایی‌ها</div>
+                </div>
+              </div>
+              <div class="col-sm-4 col-lg-3 col-xl-3 mb-4">
+                <!-- Switches -->
+                <div class="card mb-4">
+                  <h5 class="card-header">تنظیمات لایه‌ها</h5>
+                  <div class="card-body">
+                    <div class="form-check form-switch mb-2">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                      <label class="form-check-label" for="flexSwitchCheckDefault"
+                        >لایه مناطق شهری</label
+                      >
+                    </div>
+                    <div class="form-check form-switch mb-2">
+                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
+                      <label class="form-check-label" for="flexSwitchCheckChecked"
+                        >لایه ماطق و نواحی شهری</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">فیلتر</h5>
+                  </div>
+                  <div class="card-body">
+
+                    <!-- City -->
+                    <div class="mb-3 col ecommerce-select2-dropdown">
+                      <label class="form-label mb-1" for="city">
+                        شهر
+                      </label>
+                      <select 
+                        id="city"
+                        class="select2 form-select"
+                        data-placeholder="شهر را انتخاب کنید ..."
+                      >
+                      </select>
+                    </div>
+
+                    <!-- Mantagheh -->
+                    <div class="mb-3 col ecommerce-select2-dropdown">
+                      <label class="form-label mb-1 d-flex justify-content-between align-items-center"
+                        for="category-org">
+                        <span>منطقه</span>
+                      </label>
+                      <select 
+                        id="category-org" 
+                        class="select2 form-select" 
+                        data-placeholder="منطقه را انتخاب کنید ..."
+                      >
+                      </select>
+                    </div>
+
+                    <!-- Nahieh -->
+                    <div class="mb-3 col ecommerce-select2-dropdown">
+                      <label class="form-label mb-1" for="collection">ناحیه
+                      </label>
+                      <select 
+                        id="collection" 
+                        class="select2 form-select" 
+                        data-placeholder="ناحیه را انتخاب کنید ..."
+                      >
+                      </select>
+                    </div>
+
+                    <!-- Status -->
+                    <div class="mb-3 col ecommerce-select2-dropdown">
+                      <label class="form-label mb-1" for="status-org">Status
+                      </label>
+                      <select id="status-org" class="select2 form-select" data-placeholder="Published">
+                        <option value="">Published</option>
+                        <option value="Published">Published</option>
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                    </div>
+                    <di class="row">
+                      <div class="demo-inline-spacing justify-content-center d-inline-flex">
+                        <button type="button" class="btn rounded-pill btn-label-primary">
+                          <span class="tf-icons bx bx-plus-circle me-1"></span>اعمال
+                        </button>
+                        <button type="button" class="btn rounded-pill btn-label-secondary">
+                          <span class="tf-icons bx bx-minus-circle me-1"></span>حذف
+                        </button>
+                      </div>
+                    </di>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-sm-4 col-lg-6 col-xl-6 mb-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <div class="leaflet-map w-100 h-100" id="map"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 col-lg-3 col-xl-3 mb-4">
+
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-primary"><i
+                              class="bx bx-user fs-4"></i></span>
+                        </div>
+                        <div class="card-info">
+                          <h5 class="card-title mb-0 me-2">$38,566</h5>
+                          <small class="text-muted">Conversion</small>
+                        </div>
+                      </div>
+                      <div id="conversationChart"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-warning"><i
+                              class="bx bx-dollar fs-4"></i></span>
+                        </div>
+                        <div class="card-info">
+                          <h5 class="card-title mb-0 me-2">$53,659</h5>
+                          <small class="text-muted">Income</small>
+                        </div>
+                      </div>
+                      <div id="incomeChart"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="avatar">
+                          <span class="avatar-initial rounded-circle bg-label-success"><i
+                              class="bx bx-wallet fs-4"></i></span>
+                        </div>
+                        <div class="card-info">
+                          <h5 class="card-title mb-0 me-2">$12,452</h5>
+                          <small class="text-muted">Profit</small>
+                        </div>
+                      </div>
+                      <div id="profitChart"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card mb-3">
+                  <div class="card-header">
+                    <h5 class="card-title mb-0">Profit Report</h5>
+                  </div>
+                  <div class="card-body d-flex align-items-end justify-content-between">
+                    <div class="d-flex justify-content-between align-items-center gap-3 w-100">
+                      <div class="d-flex align-content-center">
+                        <div class="chart-report" data-color="danger" data-series="25"></div>
+                        <div class="chart-info ms-2">
+                          <h5 class="mb-0">$12k</h5>
+                          <small class="text-muted">2020</small>
+                        </div>
+                      </div>
+                      <div class="d-flex align-content-center">
+                        <div class="chart-report" data-color="info" data-series="50"></div>
+                        <div class="chart-info ms-2">
+                          <h5 class="mb-0">$64k</h5>
+                          <small class="text-muted">2021</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header pb-2">
+                    <h5 class="card-title mb-0">Visits</h5>
+                  </div>
+                  <div class="card-body pb-2">
+                    <div class="d-flex justify-content-between align-items-center gap-3">
+                      <div>
+                        <div class="d-flex align-content-center">
+                          <h5 class="mb-1">58.4k</h5>
+                          <i class="bx bx-chevron-up text-success"></i>
+                        </div>
+                        <small class="text-success">12.8%</small>
+                      </div>
+                      <div id="visitsBarChart"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+              
+
+            </div>
+
+
+            <!-- Cards with badge -->
+            <div class="row">
+              <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="avatar avatar-md mx-auto mb-3">
+                      <span class="avatar-initial rounded-circle bg-label-info"><i class="bx bx-edit fs-3"></i></span>
+                    </div>
+                    <span class="d-block mb-1 text-nowrap">New Posts</span>
+                    <h2 class="mb-0">48</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="avatar avatar-md mx-auto mb-3">
+                      <span class="avatar-initial rounded-circle bg-label-warning"><i
+                          class="bx bx-dock-top fs-3"></i></span>
+                    </div>
+                    <span class="d-block mb-1 text-nowrap">Attached Files</span>
+                    <h2 class="mb-0">17</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="avatar avatar-md mx-auto mb-3">
+                      <span class="avatar-initial rounded-circle bg-label-danger"><i
+                          class="bx bx-message-square-detail fs-3"></i></span>
+                    </div>
+                    <span class="d-block mb-1 text-nowrap">Comments</span>
+                    <h2 class="mb-0">29</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="avatar avatar-md mx-auto mb-3">
+                      <span class="avatar-initial rounded-circle bg-label-primary"><i
+                          class="bx bx-cube fs-3"></i></span>
+                    </div>
+                    <span class="d-block mb-1 text-nowrap">Sales</span>
+                    <h2 class="mb-0">72</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="avatar avatar-md mx-auto mb-3">
+                      <span class="avatar-initial rounded-circle bg-label-success"><i
+                          class="bx bx-purchase-tag fs-3"></i></span>
+                    </div>
+                    <span class="d-block mb-1 text-nowrap">Purchase</span>
+                    <h2 class="mb-0">65</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6 mb-4">
+                <div class="card">
+                  <div class="card-body text-center">
+                    <div class="avatar avatar-md mx-auto mb-3">
+                      <span class="avatar-initial rounded-circle bg-label-danger"><i class="bx bx-cart fs-3"></i></span>
+                    </div>
+
+                    <span class="d-block mb-1 text-nowrap">Order</span>
+                    <h2 class="mb-0">40</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/ Cards with badge -->
+          </div>
+          <!--/ Content -->
+
+          <!-- Footer -->
+          <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+              <div class="mb-2 mb-md-0">
+                ©
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                , made with ❤️ by
+                <a href="https://pixinvent.com" target="_blank" class="footer-link fw-medium">Pixinvent</a>
+              </div>
+              <div class="d-none d-lg-inline-block">
+                <a href="https://demos.pixinvent.com/frest-html-admin-template/documentation/" target="_blank"
+                  class="footer-link me-4">Documentation</a>
+              </div>
+            </div>
+          </footer>
+          <!-- / Footer -->
+
+          <div class="content-backdrop fade"></div>
+        </div>
+        <!--/ Content wrapper -->
+      </div>
+
+      <!--/ Layout container -->
+    </div>
+  </div>
+
+  <!-- Overlay -->
+  <div class="layout-overlay layout-menu-toggle"></div>
+
+  <!-- Drag Target Area To SlideIn Menu On Small Screens -->
+  <div class="drag-target"></div>
+
+  <!--/ Layout wrapper -->
+
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/core.js -->
+
+  <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+  <script src="../assets/vendor/libs/popper/popper.js"></script>
+  <script src="../assets/vendor/js/bootstrap.js"></script>
+  <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <script src="../assets/vendor/libs/hammer/hammer.js"></script>
+  <script src="../../assets/vendor/libs/i18n/i18n.js"></script>
+  <script src="../../assets/vendor/libs/typeahead-js/typeahead.js"></script>
+
+  <script src="../assets/vendor/js/menu.js"></script>
+
+  <!-- endbuild -->
+
+  <!-- Vendors JS -->
+  <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+  <script src="../assets/vendor/libs/leaflet/leaflet.js"></script>
+  <script src="../assets/vendor/libs/leaflet-marker-cluster/leaflet.markercluster.js"></script>
+  <script src="../../assets/vendor/libs/quill/katex.js"></script>
+  <script src="../../assets/vendor/libs/quill/quill.js"></script>
+  <script src="../../assets/vendor/libs/select2/select2.js"></script>
+  <script src="../../assets/vendor/libs/dropzone/dropzone.js"></script>
+  <script src="../../assets/vendor/libs/jquery-repeater/jquery-repeater.js"></script>
+  <script src="../../assets/vendor/libs/flatpickr/flatpickr.js"></script>
+  <script src="../../assets/vendor/libs/tagify/tagify.js"></script>
+  <script src="../../assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
+  <script src="../../assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+  <script src="../../assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
+  <script src="../../assets/vendor/libs/d3/d3.v7.js"></script>
+
+  <!-- Main JS -->
+  <script src="../assets/js/main.js"></script>
+
+  <!-- Page JS -->
+  <script src="../assets/js/map-filter-cards.js"></script>
+  <script src="../assets/js/cards.js"></script>
+  <script src="../../assets/js/app-ecommerce-product-add.js"></script>
+  <script src="../assets/js/cards-statistics.js"></script>
+  <script src="../assets/js/form-basic-inputs.js"></script>
+  <script src="../../assets/js/cards-advance.js"></script>
+</body>
+
+</html>

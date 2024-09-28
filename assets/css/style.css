@@ -1,0 +1,10 @@
+.leaflet-popup-content-wrapper{
+    font-family: iranyekan !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.leaflet-popup-content{
+    font-family: iranyekan !important;
+    line-height: 1.5rem !important;
+}
