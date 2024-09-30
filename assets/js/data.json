@@ -1,0 +1,886 @@
+{
+    "name": "Root",
+    "children": [
+        {
+            "name": "مشهد",
+            "children": [
+                {
+                    "name": "منطقه 1",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 4
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 6
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 5
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 4
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 12
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 11
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 10",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesizesize": 8
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesizesize": 9
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesizesize": 9
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesizesize": 5
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesize": 15
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesize": 15
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesize": 18
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesize": 13
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 24
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 26
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 20
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 23
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 11",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 12
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 8
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 7
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 5
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 5
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 10
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 12",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 11
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 6
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 7
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 3
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 5
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 11
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 11
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 13",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "تافتون",
+                                    "size": 1
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 1
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 2
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesizesizesize": 2
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesizesizesize": 1
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesizesizesize": 4
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesizesizesize": 2
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesizesize": 4
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesizesize": 4
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesizesize": 7
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesizesize": 4
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 4",
+                            "children": [
+                                {
+                                    "name": "تافتون",
+                                    "sizesizesize": 2
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesizesize": 2
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesizesize": 4
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 2",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesizesize": 37
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesizesize": 28
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesizesize": 23
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesizesize": 27
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesize": 4
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesize": 6
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesize": 4
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesize": 9
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 17
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 11
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 18
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 25
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 4",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesize": 19
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesize": 12
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesize": 11
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesize": 8
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 3",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesize": 19
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesize": 15
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesize": 16
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesize": 9
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 26
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 33
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 31
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 28
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesize": 19
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesize": 27
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesize": 21
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesize": 19
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 4",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 10
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 4
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 4
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 9
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 4",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 10
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 6
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 8
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 1
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 4
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 2
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 6
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 23
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 29
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 34
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 34
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 5",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 12
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 11
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 5
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 11
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 18
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 22
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 17
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 25
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 6",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 13
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 14
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 11
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 16
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 17
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 6
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 10
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "sizesize": 15
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "sizesize": 21
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "sizesize": 12
+                                },
+                                {
+                                    "name": "لواش",
+                                    "sizesize": 20
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 7",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 13
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 7
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 9
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 12
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 12
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 19
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 18
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 19
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 6
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 6
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 7
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 3
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 8",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 3
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 1
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 4
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 1
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 5
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 3
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 1
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 4
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 6
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "منطقه 9",
+                    "children": [
+                        {
+                            "name": "ناحیه 1",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 14
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 12
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 13
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 11
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 2",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 5
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 8
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 7
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ناحیه 3",
+                            "children": [
+                                {
+                                    "name": "بربری",
+                                    "size": 13
+                                },
+                                {
+                                    "name": "تافتون",
+                                    "size": 11
+                                },
+                                {
+                                    "name": "سنگک",
+                                    "size": 13
+                                },
+                                {
+                                    "name": "لواش",
+                                    "size": 13
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

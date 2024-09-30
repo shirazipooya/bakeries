@@ -505,37 +505,59 @@
             </div>
 
             <div class="row">
-              <!-- BakersRisk -->
-              <div class="col-md-12 col-lg-6 col-xl-6 mb-4">
-                <div class="card h-100">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <div class="card-title mb-0">
-                      <h5 class="m-0 me-2 mb-2">ریسک نانوا</h5>
-                      <small class="text-muted">واحد: تعداد نانوایی‌ها</small>
-                    </div>
-                  </div>
-                  <div class="card-body pb-0">
-                    <div id="bakersRiskBarChart"></div>
-                  </div>
-                </div>
-              </div>
-              <!-- / BakersRisk -->
 
-              <!-- HouseholdRisk -->
-              <div class="col-md-12 col-lg-6 col-xl-6 mb-4">
-                <div class="card h-100">
-                  <div class="card-header d-flex align-items-center justify-content-between">
-                    <div class="card-title mb-0">
-                      <h5 class="m-0 me-2 mb-2">ریسک خانوار</h5>
-                      <small class="text-muted">واحد: تعداد نانوایی‌ها</small>
+              <div class="col-md-12 col-lg-6 col-xl-6  order-3 order-lg-0 mb-4">
+                <!-- BakersRisk -->
+                <div class="row m-0 p-0 mb-4">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <div class="card-title mb-0">
+                        <h5 class="m-0 me-2 mb-2">ریسک نانوا</h5>
+                        <small class="text-muted">واحد: تعداد نانوایی‌ها</small>
+                      </div>
+                    </div>
+                    <div class="card-body pb-0">
+                      <div id="bakersRiskBarChart"></div>
                     </div>
                   </div>
-                  <div class="card-body pb-0">
-                    <div id="householdRiskBarChart"></div>
+                </div>
+                <!-- / BakersRisk -->
+                <!-- HouseholdRisk -->
+                <div class="row m-0 p-0">
+                  <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between">
+                      <div class="card-title mb-0">
+                        <h5 class="m-0 me-2 mb-2">ریسک خانوار</h5>
+                        <small class="text-muted">واحد: تعداد نانوایی‌ها</small>
+                      </div>
+                    </div>
+                    <div class="card-body pb-0">
+                      <div id="householdRiskBarChart"></div>
+                    </div>
                   </div>
                 </div>
+                <!-- / HouseholdRisk -->
               </div>
-              <!-- / HouseholdRisk -->
+
+              <div class="col-md-12 col-lg-6 col-xl-6  order-3 order-lg-0 mb-4">
+                <div class="ecommerce-select2-dropdow">
+                  <select 
+                    id="selectColumn" 
+                    class="select2 form-select" 
+                    data-placeholder="پارامتر را انتخاب کنید ..."
+                    onchange="fetchInfo()"
+                  >
+                    <option value="TypeBread">نوع پخت</option>
+                    <option value="BreadRations">سهمیه (تعداد کیسه)</option>
+                    <option value="TypeFlour">نوع آرد</option>
+                    <option value="BakersRisk">ریسک نانوا</option>
+                    <option value="HouseholdRisk">ریسک خانوار</option>
+                    </select>
+                </div>
+                <div class="card card-sunburst h-100" id="card-sunburst">
+                  <div id="sunburst"></div>
+                </div>
+              </div>
             </div>
 
             <!-- Controler and Map -->
@@ -889,7 +911,8 @@
   <script src="../../assets/vendor/libs/@form-validation/umd/bundle/popular.min.js"></script>
   <script src="../../assets/vendor/libs/@form-validation/umd/plugin-bootstrap5/index.min.js"></script>
   <script src="../../assets/vendor/libs/@form-validation/umd/plugin-auto-focus/index.min.js"></script>
-  <script src="../../assets/vendor/libs/d3/d3.v7.js"></script>
+  <!-- <script src="../../assets/vendor/libs/d3/d3.v7.js"></script> -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
 
   <!-- Main JS -->
   <script src="../assets/js/main.js"></script>
@@ -901,6 +924,7 @@
   <script src="../assets/js/cards-statistics.js"></script>
   <script src="../assets/js/form-basic-inputs.js"></script>
   <script src="../../assets/js/cards-advance.js"></script>
+  <script src="../../assets/js/sunburst.js"></script>
 </body>
 
 </html>

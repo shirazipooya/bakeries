@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 from flask import Flask
-from flask import render_template, jsonify
+from flask import render_template, jsonify, request
 
 
 # Global Variable
@@ -60,6 +60,39 @@ def get_all_data():
     }
     
     return jsonify(response)
+
+
+@app.route(rule="/sunburst_data/<option>", methods=["GET"])
+def sunburst_data(option):
+    selected_column = option    
+    query = f'SELECT City, Region, District, {selected_column} FROM {BAKERISE_TABLE_NAME}'
+    data = pd.DataFrame(query_db(query=query, args=(), database='database.db'))
+    def build_hierarchy(data, keys):
+        if not keys:
+            return {'size': len(data)}
+        result = []
+        for key, group in data.groupby(keys[0]):
+            
+            if key in list(data[selected_column].unique()):
+                result.append({
+                    'name': key,
+                    'size': len(group[selected_column])
+                })
+            else:
+                result.append({
+                    'name': key,
+                    'children': build_hierarchy(group, keys[1:]) if len(keys) > 1 else len(group[selected_column])
+                })                
+        return result
+
+    hierarchy = build_hierarchy(data, ['City', 'Region', 'District', selected_column])
+
+    hierarchical_json = {'name': 'Root', 'children': hierarchy}
+    
+    return jsonify(hierarchical_json)
+        
+
+
 
 
 @app.route("/")
