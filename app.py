@@ -90,6 +90,22 @@ def sunburst_data(option):
     hierarchical_json = {'name': 'Root', 'children': hierarchy}
     
     return jsonify(hierarchical_json)
+
+
+@app.route(rule='/region/<region>', methods=['GET'])
+def region_info(region):
+    print(region)
+    query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE Region=?'
+    region_data = pd.DataFrame(query_db(query=query, args=(region,), database='database.db'))
+    print(region_data)
+    if region_data:
+        return jsonify({
+            'n': len(region_data),
+            'name': region_data[1],
+            'population': region_data[2],
+            'area': region_data[3]
+        })
+    return jsonify({'error': 'Region not found'}), 404
         
 
 

@@ -562,24 +562,24 @@
 
             <!-- Controler and Map -->
             <div class="row">
-              <div class="col-md-12 mb-2">
+              <div class="col-12 mb-2">
                 <div class="divider">
                   <div class="divider-text fs-4">نقشه نانوایی‌ها</div>
                 </div>
               </div>
-              <div class="col-sm-4 col-lg-3 col-xl-3 mb-4">
+              <div class="col-md-4 col-lg-3 col-xl-3 mb-4">
                 <!-- Switches -->
                 <div class="card mb-4">
                   <h5 class="card-header">تنظیمات لایه‌ها</h5>
                   <div class="card-body">
                     <div class="form-check form-switch mb-2">
-                      <input class="form-check-input" type="checkbox" id="showRegion" />
+                      <input class="form-check-input" type="checkbox" id="showRegion" checked />
                       <label class="form-check-label" for="showRegion"
                         >لایه مناطق شهری</label
                       >
                     </div>
                     <div class="form-check form-switch mb-2">
-                      <input class="form-check-input" type="checkbox" id="showDistrict" />
+                      <input class="form-check-input" type="checkbox" id="showDistrict" disabled />
                       <label class="form-check-label" for="showDistrict"
                         >لایه ماطق و نواحی شهری</label
                       >
@@ -656,14 +656,21 @@
                 </div>
 
               </div>
-              <div class="col-sm-4 col-lg-6 col-xl-6 mb-4">
+              <div class="col-md-4 col-lg-6 col-xl-6 mb-4">
                 <div class="card h-100">
                   <div class="card-body">
-                    <div class="leaflet-map w-100 h-100" id="map"></div>
+                    <div class="leaflet-map w-100" id="map"></div>
                   </div>
                 </div>
               </div>
-              <div class="col-sm-4 col-lg-3 col-xl-3 mb-4">
+              <div class="col-md-4 col-lg-3 col-xl-3 mb-4">
+
+                  <div class="card mb-3">
+                    <div class="card-body text-center">
+                      <div id="impressionDonutChart"></div>
+                    </div>
+                  </div>
+
 
                 <div class="card mb-3">
                   <div class="card-body">
