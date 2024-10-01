@@ -49,6 +49,91 @@
 
     L.control.layers(baseLayers).addTo(map);
 
+
+
+
+    // // Region
+    // let geojsonLayerRegion = null;
+
+    // function addGeoJSONLayerRegion(geojsonData) {
+    //     geojsonLayerRegion = L.geoJSON(geojsonData, {
+    //         style: function (feature) {
+    //             return {
+    //                 color: "#3388ff",  // Outline color
+    //                 weight: 2,
+    //                 opacity: 1,
+    //                 fillColor: "#3388ff",
+    //                 fillOpacity: 0.2
+    //             };
+    //         },
+    //     }).addTo(map);
+    // }
+
+    // fetch('/assets/data/geodatabase/Region.geojson')
+    //     .then(response => response.json())
+    //     .then(geojsonData => {           
+    //         addGeoJSONLayerRegion(geojsonData);
+    //     })
+    //     .catch(error => {
+    //         console.error("Error loading the GeoJSON file:", error);
+    //     })
+    
+    // document.getElementById('showRegion').addEventListener('change', function() {
+    //     if (this.checked) {           
+    //         if (geojsonLayerRegion) {
+    //             geojsonLayerRegion.addTo(map);
+    //         }
+    //     } else {
+    //         if (geojsonLayerRegion) {
+    //             map.removeLayer(geojsonLayerRegion);
+    //         }
+    //     }
+    // })
+
+
+
+    // District
+    let geojsonLayerDistrict = null;
+
+    function addGeoJSONLayerDistrict(geojsonData) {
+        console.log(geojsonData);
+        
+        // geojsonLayerDistrict = L.geoJSON(geojsonData, {
+        //     style: function (feature) {
+        //         return {
+        //             color: "#3388ff", 
+        //             weight: 2,
+        //             opacity: 1,
+        //             fillColor: "#3388ff",
+        //             fillOpacity: 0.2
+        //         };
+        //     },
+        // }).addTo(map);
+        geojsonLayerDistrict = L.geoJSON(geojsonData).addTo(map);
+    }
+
+    fetch('/assets/data/geodatabase/District.geojson')
+        .then(response => response.json())
+        .then(geojsonData => {                      
+            addGeoJSONLayerDistrict(geojsonData);
+        })
+        .catch(error => {
+            console.error("Error loading the GeoJSON file:", error);
+        })
+    
+    document.getElementById('showDistrict').addEventListener('change', function() {
+        if (this.checked) {                    
+            if (geojsonLayerDistrict) {
+                geojsonLayerDistrict.addTo(map);
+            }
+        } else {
+            if (geojsonLayerDistrict) {
+                map.removeLayer(geojsonLayerDistrict);
+            }
+        }
+    })
+
+
     const markerClusters = L.markerClusterGroup();
 
     map.addLayer(markerClusters);
