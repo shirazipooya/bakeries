@@ -74,7 +74,7 @@
                     fetch(`/region/${feature.properties.Region}`)
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
+                            console.log(data.n);
                             
                         })
                 });

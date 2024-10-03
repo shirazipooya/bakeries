@@ -4,6 +4,7 @@
 
 'use strict';
 
+
 let isRtl = window.Helpers.isRtl(),
   isDarkStyle = window.Helpers.isDarkStyle(),
   menu,
@@ -14,7 +15,22 @@ if (document.getElementById('layout-menu')) {
   isHorizontalLayout = document.getElementById('layout-menu').classList.contains('menu-horizontal');
 }
 
+
+
+
 (function () {
+
+  const menuLinks = document.querySelectorAll('.menu-link');
+  const windowPathname = window.location.pathname;
+  menuLinks.forEach(menuLink => {
+    const menuLinkPathname = new URL(menuLink.href).pathname
+    if (windowPathname === menuLinkPathname) {
+      // menuLink.classList.add('active')
+      menuLink.parentElement.classList.add('active')     
+    }
+    
+  })
+
   setTimeout(function () {
     window.Helpers.initCustomOptionCheck();
   }, 1000);
@@ -246,6 +262,8 @@ if (document.getElementById('layout-menu')) {
       item.innerHTML = i18next.t(item.dataset.i18n);
     });
   }
+
+  
 
   // Notification
   // ------------

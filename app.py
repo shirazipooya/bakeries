@@ -97,13 +97,13 @@ def region_info(region):
     print(region)
     query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE Region=?'
     region_data = pd.DataFrame(query_db(query=query, args=(region,), database='database.db'))
-    print(region_data)
-    if region_data:
+    print(region_data.groupby(by=['District'])['TypeBread'].value_counts())
+    if not region_data.empty:
         return jsonify({
             'n': len(region_data),
-            'name': region_data[1],
-            'population': region_data[2],
-            'area': region_data[3]
+            # 'district': region_data.groupby(['District'].count()),
+            # 'population': region_data[2],
+            # 'area': region_data[3]
         })
     return jsonify({'error': 'Region not found'}), 404
         
@@ -114,6 +114,11 @@ def region_info(region):
 @app.route("/")
 def index():
     return render_template(template_name_or_list="index.html")
+
+
+@app.route("/database")
+def database():
+    return render_template(template_name_or_list="database.html")
 
 
 if __name__ == "__main__":
