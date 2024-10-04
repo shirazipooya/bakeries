@@ -2,11 +2,11 @@
  *  Form Wizard
  */
 
-'use strict';
+"use strict";
 
 $(function () {
-  const select2 = $('.select2'),
-    selectPicker = $('.selectpicker');
+  const select2 = $(".select2"),
+    selectPicker = $(".selectpicker");
 
   // Bootstrap select
   if (selectPicker.length) {
@@ -19,8 +19,8 @@ $(function () {
       var $this = $(this);
       $this.wrap('<div class="position-relative"></div>');
       $this.select2({
-        placeholder: 'Select value',
-        dropdownParent: $this.parent()
+        placeholder: "Select value",
+        dropdownParent: $this.parent(),
       });
     });
   }
@@ -28,127 +28,184 @@ $(function () {
 (function () {
   // Numbered Wizard
   // --------------------------------------------------------------------
-  const wizardNumbered = document.querySelector('.wizard-numbered'),
-    wizardNumberedBtnNextList = [].slice.call(wizardNumbered.querySelectorAll('.btn-next')),
-    wizardNumberedBtnPrevList = [].slice.call(wizardNumbered.querySelectorAll('.btn-prev')),
-    wizardNumberedBtnSubmit = wizardNumbered.querySelector('.btn-submit');
+  const wizardNumbered = document.querySelector(".wizard-numbered"),
+    wizardNumberedBtnNextList = [].slice.call(
+      wizardNumbered.querySelectorAll(".btn-next")
+    ),
+    wizardNumberedBtnPrevList = [].slice.call(
+      wizardNumbered.querySelectorAll(".btn-prev")
+    ),
+    wizardNumberedBtnSubmit = wizardNumbered.querySelector(".btn-submit");
 
   if (typeof wizardNumbered !== undefined && wizardNumbered !== null) {
     const numberedStepper = new Stepper(wizardNumbered, {
-      linear: false
+      linear: false,
     });
     if (wizardNumberedBtnNextList) {
-      wizardNumberedBtnNextList.forEach(wizardNumberedBtnNext => {
-        wizardNumberedBtnNext.addEventListener('click', event => {
+      wizardNumberedBtnNextList.forEach((wizardNumberedBtnNext) => {
+        wizardNumberedBtnNext.addEventListener("click", (event) => {
           numberedStepper.next();
         });
       });
     }
     if (wizardNumberedBtnPrevList) {
-      wizardNumberedBtnPrevList.forEach(wizardNumberedBtnPrev => {
-        wizardNumberedBtnPrev.addEventListener('click', event => {
+      wizardNumberedBtnPrevList.forEach((wizardNumberedBtnPrev) => {
+        wizardNumberedBtnPrev.addEventListener("click", (event) => {
           numberedStepper.previous();
         });
       });
     }
-    if (wizardNumberedBtnSubmit) {
-      wizardNumberedBtnSubmit.addEventListener('click', event => {
-        alert('Submitted..!!');
-      });
-    }
+    // if (wizardNumberedBtnSubmit) {
+    //   wizardNumberedBtnSubmit.addEventListener("click", (event) => {
+    //     alert("Submitted..!!");
+    //   });
+    // }
   }
+
+  document
+    .getElementById("addRecordForm")
+    .addEventListener("submit", function (e) {
+
+      e.preventDefault();
+
+      const FirstName = document.getElementById("FirstName").value;
+      const LastName = document.getElementById("LastName").value;
+      const NID = document.getElementById("NID").value;
+      const City = document.getElementById("City").value;
+      const Region = document.getElementById("Region").value;
+      const District = document.getElementById("District").value;
+      const Lat = document.getElementById("Lat").value;
+      const Lon = document.getElementById("Lon").value;
+      const HouseholdRisk = document.getElementById("HouseholdRisk").value;
+      const BakersRisk = document.getElementById("BakersRisk").value;
+      const TypeFlour = document.getElementById("TypeFlour").value;
+      const TypeBread = document.getElementById("TypeBread").value;
+      const BreadRations = document.getElementById("BreadRations").value;
+
+      fetch("/add_record", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ FirstName, LastName, NID, City, Region, District, Lat, Lon, HouseholdRisk, BakersRisk, TypeFlour, TypeBread, BreadRations }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "success") {
+            location.reload(); // Reload the page to show the new record
+          }
+        });
+    });
 
   // Vertical Wizard
   // --------------------------------------------------------------------
-  const wizardVertical = document.querySelector('.wizard-vertical'),
-    wizardVerticalBtnNextList = [].slice.call(wizardVertical.querySelectorAll('.btn-next')),
-    wizardVerticalBtnPrevList = [].slice.call(wizardVertical.querySelectorAll('.btn-prev')),
-    wizardVerticalBtnSubmit = wizardVertical.querySelector('.btn-submit');
+  const wizardVertical = document.querySelector(".wizard-vertical"),
+    wizardVerticalBtnNextList = [].slice.call(
+      wizardVertical.querySelectorAll(".btn-next")
+    ),
+    wizardVerticalBtnPrevList = [].slice.call(
+      wizardVertical.querySelectorAll(".btn-prev")
+    ),
+    wizardVerticalBtnSubmit = wizardVertical.querySelector(".btn-submit");
 
   if (typeof wizardVertical !== undefined && wizardVertical !== null) {
     const verticalStepper = new Stepper(wizardVertical, {
-      linear: false
+      linear: false,
     });
     if (wizardVerticalBtnNextList) {
-      wizardVerticalBtnNextList.forEach(wizardVerticalBtnNext => {
-        wizardVerticalBtnNext.addEventListener('click', event => {
+      wizardVerticalBtnNextList.forEach((wizardVerticalBtnNext) => {
+        wizardVerticalBtnNext.addEventListener("click", (event) => {
           verticalStepper.next();
         });
       });
     }
     if (wizardVerticalBtnPrevList) {
-      wizardVerticalBtnPrevList.forEach(wizardVerticalBtnPrev => {
-        wizardVerticalBtnPrev.addEventListener('click', event => {
+      wizardVerticalBtnPrevList.forEach((wizardVerticalBtnPrev) => {
+        wizardVerticalBtnPrev.addEventListener("click", (event) => {
           verticalStepper.previous();
         });
       });
     }
 
     if (wizardVerticalBtnSubmit) {
-      wizardVerticalBtnSubmit.addEventListener('click', event => {
-        alert('Submitted..!!');
+      wizardVerticalBtnSubmit.addEventListener("click", (event) => {
+        alert("Submitted..!!");
       });
     }
   }
 
   // Modern Wizard
   // --------------------------------------------------------------------
-  const wizardModern = document.querySelector('.wizard-modern-example'),
-    wizardModernBtnNextList = [].slice.call(wizardModern.querySelectorAll('.btn-next')),
-    wizardModernBtnPrevList = [].slice.call(wizardModern.querySelectorAll('.btn-prev')),
-    wizardModernBtnSubmit = wizardModern.querySelector('.btn-submit');
+  const wizardModern = document.querySelector(".wizard-modern-example"),
+    wizardModernBtnNextList = [].slice.call(
+      wizardModern.querySelectorAll(".btn-next")
+    ),
+    wizardModernBtnPrevList = [].slice.call(
+      wizardModern.querySelectorAll(".btn-prev")
+    ),
+    wizardModernBtnSubmit = wizardModern.querySelector(".btn-submit");
   if (typeof wizardModern !== undefined && wizardModern !== null) {
     const modernStepper = new Stepper(wizardModern, {
-      linear: false
+      linear: false,
     });
     if (wizardModernBtnNextList) {
-      wizardModernBtnNextList.forEach(wizardModernBtnNext => {
-        wizardModernBtnNext.addEventListener('click', event => {
+      wizardModernBtnNextList.forEach((wizardModernBtnNext) => {
+        wizardModernBtnNext.addEventListener("click", (event) => {
           modernStepper.next();
         });
       });
     }
     if (wizardModernBtnPrevList) {
-      wizardModernBtnPrevList.forEach(wizardModernBtnPrev => {
-        wizardModernBtnPrev.addEventListener('click', event => {
+      wizardModernBtnPrevList.forEach((wizardModernBtnPrev) => {
+        wizardModernBtnPrev.addEventListener("click", (event) => {
           modernStepper.previous();
         });
       });
     }
     if (wizardModernBtnSubmit) {
-      wizardModernBtnSubmit.addEventListener('click', event => {
-        alert('Submitted..!!');
+      wizardModernBtnSubmit.addEventListener("click", (event) => {
+        alert("Submitted..!!");
       });
     }
   }
 
   // Modern Vertical Wizard
   // --------------------------------------------------------------------
-  const wizardModernVertical = document.querySelector('.wizard-modern-vertical'),
-    wizardModernVerticalBtnNextList = [].slice.call(wizardModernVertical.querySelectorAll('.btn-next')),
-    wizardModernVerticalBtnPrevList = [].slice.call(wizardModernVertical.querySelectorAll('.btn-prev')),
-    wizardModernVerticalBtnSubmit = wizardModernVertical.querySelector('.btn-submit');
-  if (typeof wizardModernVertical !== undefined && wizardModernVertical !== null) {
+  const wizardModernVertical = document.querySelector(
+      ".wizard-modern-vertical"
+    ),
+    wizardModernVerticalBtnNextList = [].slice.call(
+      wizardModernVertical.querySelectorAll(".btn-next")
+    ),
+    wizardModernVerticalBtnPrevList = [].slice.call(
+      wizardModernVertical.querySelectorAll(".btn-prev")
+    ),
+    wizardModernVerticalBtnSubmit =
+      wizardModernVertical.querySelector(".btn-submit");
+  if (
+    typeof wizardModernVertical !== undefined &&
+    wizardModernVertical !== null
+  ) {
     const modernVerticalStepper = new Stepper(wizardModernVertical, {
-      linear: false
+      linear: false,
     });
     if (wizardModernVerticalBtnNextList) {
-      wizardModernVerticalBtnNextList.forEach(wizardModernVerticalBtnNext => {
-        wizardModernVerticalBtnNext.addEventListener('click', event => {
+      wizardModernVerticalBtnNextList.forEach((wizardModernVerticalBtnNext) => {
+        wizardModernVerticalBtnNext.addEventListener("click", (event) => {
           modernVerticalStepper.next();
         });
       });
     }
     if (wizardModernVerticalBtnPrevList) {
-      wizardModernVerticalBtnPrevList.forEach(wizardModernVerticalBtnPrev => {
-        wizardModernVerticalBtnPrev.addEventListener('click', event => {
+      wizardModernVerticalBtnPrevList.forEach((wizardModernVerticalBtnPrev) => {
+        wizardModernVerticalBtnPrev.addEventListener("click", (event) => {
           modernVerticalStepper.previous();
         });
       });
     }
     if (wizardModernVerticalBtnSubmit) {
-      wizardModernVerticalBtnSubmit.addEventListener('click', event => {
-        alert('Submitted..!!');
+      wizardModernVerticalBtnSubmit.addEventListener("click", (event) => {
+        alert("Submitted..!!");
       });
     }
   }

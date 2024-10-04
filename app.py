@@ -5,7 +5,24 @@ from flask import render_template, jsonify, request
 
 
 # Global Variable
+DATABASE_NAME = 'database.db'
 BAKERISE_TABLE_NAME = 'BAKERIES'
+HEADER_NAME = {
+    'ID': 'ردیف',
+    'FirstName': 'نام',
+    'LastName': 'نام خانوادگی',
+    'NID': 'کدملی',
+    'City': 'شهر',
+    'Region': 'منطقه',
+    'District': 'ناحیه',
+    'Lat': 'عرض جغرافیایی',
+    'Lon': 'طول جغرافیایی',
+    'HouseholdRisk': 'ریسک خانوار',
+    'BakersRisk': 'ریسک نانوا',
+    'TypeFlour': 'نوع آرد',
+    'TypeBread': 'نوع پخت',
+    'BreadRations': 'سهمیه',
+}
 
 
 app = Flask(
@@ -16,8 +33,8 @@ app = Flask(
 
 
 # SQLite Database Function
-def query_db(query, args=(), database='database.db'):
-    conn = sqlite3.connect(database)
+def query_db(query, args=(), database=DATABASE_NAME):
+    conn = sqlite3.connect(database, timeout=10)
     cur = conn.cursor()
     cur.execute(query, args)
     column_names = [description[0] for description in cur.description]
@@ -26,12 +43,13 @@ def query_db(query, args=(), database='database.db'):
     conn.close()
     return data
 
+
 # Cols: 'HouseholdRisk', 'BakersRisk', 'TypeFlour', 'TypeBread', 'BreadRations'
 # API to Get All Data
 @app.route(rule='/get_all_data', methods=['GET'])
 def get_all_data():
     query = f'SELECT * FROM {BAKERISE_TABLE_NAME}'
-    data = query_db(query=query, args=(), database='database.db')
+    data = query_db(query=query, args=(), database=DATABASE_NAME)
     df = pd.DataFrame(data)
     
     type_bread_cat = df.groupby("TypeBread")["TypeBread"].count().to_dict()
@@ -66,7 +84,7 @@ def get_all_data():
 def sunburst_data(option):
     selected_column = option    
     query = f'SELECT City, Region, District, {selected_column} FROM {BAKERISE_TABLE_NAME}'
-    data = pd.DataFrame(query_db(query=query, args=(), database='database.db'))
+    data = pd.DataFrame(query_db(query=query, args=(), database=DATABASE_NAME))
     def build_hierarchy(data, keys):
         if not keys:
             return {'size': len(data)}
@@ -96,7 +114,7 @@ def sunburst_data(option):
 def region_info(region):
     print(region)
     query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE Region=?'
-    region_data = pd.DataFrame(query_db(query=query, args=(region,), database='database.db'))
+    region_data = pd.DataFrame(query_db(query=query, args=(region,), database=DATABASE_NAME))
     print(region_data.groupby(by=['District'])['TypeBread'].value_counts())
     if not region_data.empty:
         return jsonify({
@@ -116,9 +134,65 @@ def index():
     return render_template(template_name_or_list="index.html")
 
 
-@app.route("/database")
+@app.route(rule="/database", methods=['GET'])
 def database():
-    return render_template(template_name_or_list="database.html")
+    query = f'SELECT * FROM {BAKERISE_TABLE_NAME}'
+    data = query_db(query=query, args=(), database=DATABASE_NAME)
+    return render_template(template_name_or_list="database.html", data=data, columns=[HEADER_NAME.get(x) for x in list(data[0].keys())])
+
+
+
+# Route to add a new record
+@app.route('/add_record', methods=['POST'])
+def add_record():
+    
+    data = request.json
+    
+    FirstName = data.get('FirstName')
+    LastName = data.get('LastName')
+    NID = data.get('NID')
+    City = data.get('City')
+    Region = data.get('Region')
+    District = data.get('District')
+    Lat = data.get('Lat')
+    Lon = data.get('Lon')
+    HouseholdRisk = data.get('HouseholdRisk')
+    BakersRisk = data.get('BakersRisk')
+    TypeFlour = data.get('TypeFlour')
+    TypeBread = data.get('TypeBread')
+    BreadRations = data.get('BreadRations')
+    
+    if not FirstName or not LastName or not NID or not City or not Region or not District or not Lat or not Lon or not HouseholdRisk or not BakersRisk or not TypeFlour or not TypeBread or not BreadRations:
+        return jsonify({'status': 'error', 'message': 'Missing Fields'}), 400
+    
+    
+    conn = sqlite3.connect(DATABASE_NAME)
+    cursor = conn.cursor()
+    cursor.execute(
+        f'INSERT INTO {BAKERISE_TABLE_NAME} (FirstName, LastName, NID, City, Region, District, Lat, Lon, HouseholdRisk, BakersRisk, TypeFlour, TypeBread, BreadRations) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+        (FirstName, LastName, NID, City, Region, District, Lat, Lon, HouseholdRisk, BakersRisk, TypeFlour, TypeBread, BreadRations)
+    )
+    conn.commit()
+    conn.close()
+    
+    return jsonify({'status': 'success', 'message': 'Record Added Successfully!'})
+
+
+
+# Route to delete a record
+@app.route('/delete_record/<int:id>', methods=['POST'])
+def delete_record(id):
+    conn = sqlite3.connect(DATABASE_NAME)
+    cursor = conn.cursor()
+    cursor.execute(
+        f'DELETE FROM {BAKERISE_TABLE_NAME} WHERE ID=?',
+        (id,)
+    )
+    conn.commit()
+    conn.close()
+    return jsonify({'status': 'success', 'message': 'Record deleted successfully!'})
+
+
 
 
 if __name__ == "__main__":
