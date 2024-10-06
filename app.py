@@ -138,7 +138,21 @@ def index():
 def database():
     query = f'SELECT * FROM {BAKERISE_TABLE_NAME}'
     data = query_db(query=query, args=(), database=DATABASE_NAME)
-    return render_template(template_name_or_list="database.html", data=data, columns=[HEADER_NAME.get(x) for x in list(data[0].keys())])
+    page = request.args.get('page', 1, type=int)
+    per_page = 15
+    start = (page - 1) * per_page
+    end = start + per_page
+    total_pages = (len(data) + per_page - 1) // per_page
+    items_on_page = data[start:end]
+    
+    
+    return render_template(
+        template_name_or_list="database.html",
+        data=items_on_page,
+        columns=[HEADER_NAME.get(x) for x in list(data[0].keys())],
+        total_pages = total_pages,
+        page=page
+        )
 
 
 

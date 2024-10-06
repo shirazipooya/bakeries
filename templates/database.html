@@ -6,6 +6,110 @@
 
 {% block content %}
 <div class="container-xxl flex-grow-1 container-p-y">
+
+  <div class="row">
+
+    <div class="col-12 mb-2">
+      <div class="divider">
+        <div class="divider-text fs-4">ویرایش پایگاه داده</div>
+      </div>
+    </div>
+    <div class="col-12 mb-4">
+      <div class="card p-3">
+        <div class="table-responsive text-nowrap">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                {% for column in columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0" id="recordsTable">
+              {% for row in data %}
+              <tr data-id="{{ row['ID'] }}">
+                <td>{{ row['ID'] }}</td>
+                <td>{{ row['FirstName'] }}</td>
+                <td>{{ row['LastName'] }}</td>
+                <td>{{ row['NID'] }}</td>
+                <td>{{ row['City'] }}</td>
+                <td>{{ row['Region'] }}</td>
+                <td>{{ row['District'] }}</td>
+                <td>{{ row['Lat'] }}</td>
+                <td>{{ row['Lon'] }}</td>
+                <td>{{ row['HouseholdRisk'] }}</td>
+                <td>{{ row['BakersRisk'] }}</td>
+                <td>{{ row['TypeFlour'] }}</td>
+                <td>{{ row['TypeBread'] }}</td>
+                <td>{{ row['BreadRations'] }}</td>
+                <td>
+                  <div class="dropdown">
+                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                      <i class="bx bx-dots-vertical-rounded"></i>
+                    </button>
+
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" id="editBtn">
+                        <i class="bx bx-edit-alt me-1"></i>ویرایش
+                      </a>
+                      <a class="dropdown-item deleteBtn" data-bs-toggle="modal" data-bs-target="#modalCenter">
+                        <i class="bx bx-trash me-1"></i>حذف
+                      </a> 
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+          <!-- Modal for Delete Confirmation -->
+          <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="modalCenterTitle">حذف رکورد</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>آیا از حذف این رکورد مطمئن هستید؟</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                    خیر
+                  </button>
+                  <button type="button" class="btn btn-primary" id="confirmDelete">بله</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="paginationControls" class="mx-auto">
+      {% if page == 1 %}
+        <a href="{{ url_for('database', page=page - 1) }}" class="btn btn-secondary btn-sm" disabled>قبلی</a>
+        {% else %}
+        <a href="{{ url_for('database', page=page - 1) }}" class="btn btn-secondary btn-sm">قبلی</a>
+      {% endif %}
+        <span>صفحه {{page}} از {{total_pages}}</span>
+        {% if page == total_pages %}
+        <a href="{{ url_for('database', page=page + 1) }}" class="btn btn-secondary btn-sm" disabled>بعدی</a>
+        {% else %}
+        <a href="{{ url_for('database', page=page + 1) }}" class="btn btn-secondary btn-sm">بعدی</a>
+      {% endif %}
+    </div>
+
+  </div>
+
+
+
   <div class="row">
 
     <div class="col-12 mb-2">
@@ -217,103 +321,6 @@
         </div>
       </div>
     </div>
-
-  </div>
-
-  <div class="row">
-
-    <div class="col-12 mb-2">
-      <div class="divider">
-        <div class="divider-text fs-4">ویرایش پایگاه داده</div>
-      </div>
-    </div>
-    <div class="col-12 mb-4">
-      <div class="card p-3">
-        <div class="table-responsive text-nowrap">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                {% for column in columns %}
-                <th>{{ column }}</th>
-                {% endfor %}
-              </tr>
-            </thead>
-            <tbody class="table-border-bottom-0" id="recordsTable">
-              {% for row in data %}
-              <tr data-id="{{ row['ID'] }}">
-                <td>{{ row['ID'] }}</td>
-                <td>{{ row['FirstName'] }}</td>
-                <td>{{ row['LastName'] }}</td>
-                <td>{{ row['NID'] }}</td>
-                <td>{{ row['City'] }}</td>
-                <td>{{ row['Region'] }}</td>
-                <td>{{ row['District'] }}</td>
-                <td>{{ row['Lat'] }}</td>
-                <td>{{ row['Lon'] }}</td>
-                <td>{{ row['HouseholdRisk'] }}</td>
-                <td>{{ row['BakersRisk'] }}</td>
-                <td>{{ row['TypeFlour'] }}</td>
-                <td>{{ row['TypeBread'] }}</td>
-                <td>{{ row['BreadRations'] }}</td>
-                <td>
-                  <div class="dropdown">
-                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                      <i class="bx bx-dots-vertical-rounded"></i>
-                    </button>
-
-
-
-                    <div class="dropdown-menu">
-                      <button class="editBtn">Edit</button>
-                      <a class="dropdown-item" id="editBtn">
-                        <i class="bx bx-edit-alt me-1"></i>ویرایش
-                      </a>
-                      <a class="dropdown-item deleteBtn" data-bs-toggle="modal" data-bs-target="#modalCenter">
-                        <i class="bx bx-trash me-1"></i>حذف
-                      </a> 
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-
-          <!-- Modal for Delete Confirmation -->
-          <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalCenterTitle">حذف رکورد</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>آیا از حذف این رکورد مطمئن هستید؟</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                    خیر
-                  </button>
-                  <button type="button" class="btn btn-primary" id="confirmDelete">بله</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div id="paginationControls" class="mx-auto">
-      <button class="btn btn-secondary btn-sm" id="prevPage" disabled>قبلی</button>
-      <span id="pageNumbers"></span>
-      <button class="btn btn-secondary btn-sm" id="nextPage" disabled>بعدی</button>
-    </div>
-
   </div>
 </div>
 {% endblock %}
