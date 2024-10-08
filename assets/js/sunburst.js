@@ -109,7 +109,7 @@ function fetchInfo() {
         .attr("dy", "0.9em")
         .attr("fill-opacity", (d) => +labelVisible(d.current))
         .attr("transform", (d) => labelTransform(d.current))
-        .style("font-size", "14px") // Adjust the font size as needed
+        .style("font-size", "16px") // Adjust the font size as needed
         // .text(d => d.data.name);
         .each(function (d) {
           const text = d3.select(this);
@@ -126,7 +126,7 @@ function fetchInfo() {
             .append("tspan")
             .attr("x", 0)
             .attr("dy", "1.2em") // Move the second line slightly down
-            .style("font-size", "10px")
+            .style("font-size", "12px")
             .text(d.value);
         });
 
