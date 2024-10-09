@@ -134,95 +134,78 @@ def index():
     return render_template(template_name_or_list="index.html")
 
 
-@app.route(rule="/database", methods=["GET", "POST"])
+@app.route(rule='/database', methods=['GET'])
 def database():
+    return render_template(template_name_or_list='database.html')
+
+
+@app.route(rule='/api/bakeries', methods=['GET'])
+def get_table_bakeries():
+    search = request.args.get('search', '')
+    sort_by = request.args.get('sort_by', 'ID')
+    sort_order = request.args.get('sort_order', 'asc')
+    page = int(request.args.get('page', 1))
+    per_page = 15
+    offset = (page - 1) * per_page
     
-    data_all = query_db(
-        query=f'SELECT * FROM {BAKERISE_TABLE_NAME}',
-        args=(),
-        database=DATABASE_NAME
+    conn = sqlite3.connect(DATABASE_NAME)
+    conn.row_factory = sqlite3.Row
+    query = f"""
+        SELECT * FROM {BAKERISE_TABLE_NAME} 
+        WHERE
+            FirstName LIKE ? OR
+            LastName LIKE ? OR
+            NID LIKE ? OR
+            City LIKE ? OR
+            Region LIKE ? OR
+            District LIKE ? OR
+            Lat LIKE ? OR
+            Lon LIKE ? OR
+            HouseholdRisk LIKE ? OR
+            BakersRisk LIKE ? OR
+            TypeFlour LIKE ? OR
+            TypeBread LIKE ? OR
+            BreadRations LIKE ?
+        ORDER BY {sort_by} {sort_order}
+        LIMIT ? OFFSET ?
+    """
+    search_term = f'%{search}%'
+    bakeries = conn.execute(query, [search_term] * 13 + [per_page, offset]).fetchall()
+    
+    query = f"""
+        SELECT COUNT(*) FROM {BAKERISE_TABLE_NAME}
+        WHERE
+            FirstName LIKE ? OR
+            LastName LIKE ? OR
+            NID LIKE ? OR
+            City LIKE ? OR
+            Region LIKE ? OR
+            District LIKE ? OR
+            Lat LIKE ? OR
+            Lon LIKE ? OR
+            HouseholdRisk LIKE ? OR
+            BakersRisk LIKE ? OR
+            TypeFlour LIKE ? OR
+            TypeBread LIKE ? OR
+            BreadRations LIKE ?
+    """
+    total_count = conn.execute(query, [search_term] * 13).fetchone()[0]
+    
+    conn.close()
+
+    data = [dict(row) for row in bakeries]
+
+    return jsonify(
+        {
+            'data': data,
+            'total_count': total_count,
+            'per_page': per_page,
+            'page': page
+        }
     )
     
-    per_page = 15
-    page = request.args.get('page', 1, type=int)
-    q = request.args.get('q')
-
-    if q:
-        # query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE ((ID, FirstName, LastName, NID, City, Region, District, Lat, Lon, HouseholdRisk, BakersRisk, TypeFlour, TypeBread, BreadRations) LIKE ?)'
-        query = f"""
-            SELECT * FROM {BAKERISE_TABLE_NAME}
-            WHERE 
-                FirstName LIKE '%' || ? || '%' OR
-                LastName LIKE '%' || ? || '%' OR
-                NID LIKE '%' || ? || '%' OR
-                City LIKE '%' || ? || '%' OR
-                Region LIKE '%' || ? || '%' OR
-                District LIKE '%' || ? || '%' OR
-                Lat LIKE '%' || ? || '%' OR
-                Lon LIKE '%' || ? || '%' OR
-                HouseholdRisk LIKE '%' || ? || '%' OR
-                BakersRisk LIKE '%' || ? || '%' OR
-                TypeFlour LIKE '%' || ? || '%' OR
-                TypeBread LIKE '%' || ? || '%' OR
-                BreadRations LIKE '%' || ? || '%';
-        """
-        data = query_db(query=query, args= [q] * 13, database=DATABASE_NAME)
-    else:
-        query = f'SELECT * FROM {BAKERISE_TABLE_NAME}'
-        data = query_db(query=query, args=(), database=DATABASE_NAME)
-        
-    if len(data) != 0:        
-        start = (page - 1) * per_page
-        end = start + per_page
-        total_pages = (len(data) + per_page - 1) // per_page
-        results = data[start:end]
-        return render_template(
-            template_name_or_list="database.html",
-            results=results,
-            columns=[""] + [HEADER_NAME.get(x) for x in list(data[0].keys())],
-            total_pages = total_pages,
-            page=page
-        )
-    else:
-        return render_template(
-            template_name_or_list="database.html",
-            results=[],
-            columns=[""] + [HEADER_NAME.get(x) for x in list(data_all[0].keys())],
-            total_pages = 0,
-            page=page
-        )
-        
     
-
-# @app.route(rule='/search', methods=['GET'])
-# def search():
-#     se = request.args.get('query', '')
-#     if se == '':
-#         query = f'SELECT * FROM {BAKERISE_TABLE_NAME}'
-#         data = query_db(query=query, args=(), database=DATABASE_NAME)
-#     else:
-#         query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE ? IN (ID, FirstName, LastName, NID, City, Region, District, Lat, Lon, HouseholdRisk, BakersRisk, TypeFlour, TypeBread, BreadRations)'
-#         data = query_db(query=query, args=(f'%{se}%',), database=DATABASE_NAME)
-        
-#         page = request.args.get('page', 1, type=int)
-#         per_page = 15
-#         start = (page - 1) * per_page
-#         end = start + per_page
-#         total_pages = (len(data) + per_page - 1) // per_page
-#         items_on_page = data[start:end]
-        
-        
-#         return render_template(
-#             template_name_or_list="database.html",
-#             data=items_on_page,
-#             columns=[HEADER_NAME.get(x) for x in list(data[0].keys())],
-#             total_pages = total_pages,
-#             page=page
-#             )
-
-
-
-# Route to add a new record
+    
 @app.route('/add_record', methods=['POST'])
 def add_record():
     
@@ -258,22 +241,60 @@ def add_record():
     return jsonify({'status': 'success', 'message': 'Record Added Successfully!'})
 
 
-
-# Route to delete a record
-@app.route('/delete_record/<int:id>', methods=['POST'])
-def delete_record(id):
+@app.route('/api/bakeries/<int:id>', methods=['DELETE'])
+def delete_bakery(id):
     conn = sqlite3.connect(DATABASE_NAME)
-    cursor = conn.cursor()
-    cursor.execute(
-        f'DELETE FROM {BAKERISE_TABLE_NAME} WHERE ID=?',
-        (id,)
+    conn.row_factory = sqlite3.Row
+    conn.execute(f'DELETE FROM {BAKERISE_TABLE_NAME} WHERE ID = ?', (id,))
+    conn.commit()
+    conn.close()
+    return jsonify({'message': 'Bakery Deleted Successfully'})
+
+
+@app.route('/api/bakeries/<int:id>', methods=['POST'])
+def update_bakery(id):
+    data = request.json
+    conn = sqlite3.connect(DATABASE_NAME)
+    conn.row_factory = sqlite3.Row
+    query = f'''
+        UPDATE {BAKERISE_TABLE_NAME} SET
+            FirstName = ?,
+            LastName = ?,
+            NID = ?,
+            City = ?,
+            Region = ?,
+            District = ?,
+            Lat = ?,
+            Lon = ?,
+            HouseholdRisk = ?,
+            BakersRisk = ?,
+            TypeFlour = ?,
+            TypeBread = ?,
+            BreadRations = ?
+        WHERE ID = ?
+    '''
+    conn.execute(
+        query, 
+        (
+            data['FirstName'],
+            data['LastName'],
+            data['NID'],
+            data['City'],
+            data['Region'],
+            data['District'],
+            data['Lat'],
+            data['Lon'],
+            data['HouseholdRisk'],
+            data['BakersRisk'],
+            data['TypeFlour'],
+            data['TypeBread'],
+            data['BreadRations'],
+            id
+        )
     )
     conn.commit()
     conn.close()
-    return jsonify({'status': 'success', 'message': 'Record deleted successfully!'})
-
-
-
+    return jsonify({'message': 'Bakery Updated Successfully'})
 
 if __name__ == "__main__":
     app.run(
