@@ -470,5 +470,33 @@
   </div>
   <!-- / Add New Record -->
 
+<!-- Upload File -->
+  <div class="row">
+    <div class="col-12 mb-2">
+      <div class="divider">
+        <div class="divider-text fs-4">بارگزاری فایل داده‌ها</div>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-body">
+          <form action="/upload" class="dropzone needsclick" id="dropzone-basic">
+            <div class="dz-message needsclick">
+              فایل را اینجا رها کنید یا برای آپلود کلیک کنید
+              <span class="note needsclick"
+                >(تنها فایل با پسوند
+                <span class="fw-medium">CSV.</span> مجاز می‌باشد.)</span
+              >
+            </div>
+            <div class="fallback">
+              <input name="file" type="file" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- / Upload File -->
+
 </div>
 {% endblock %}

@@ -126,6 +126,18 @@ def region_info(region):
     return jsonify({'error': 'Region not found'}), 404
         
 
+@app.route('/api/pivot_table', methods=['GET'])
+def pivot_table_data():
+    conn = sqlite3.connect(DATABASE_NAME)
+    cursor = conn.cursor()
+    cursor.execute(f'SELECT * FROM {BAKERISE_TABLE_NAME}')
+    rows = cursor.fetchall()
+    conn.close()
+
+    # Convert the rows into a list of dictionaries
+    columns = [desc[0] for desc in cursor.description]
+    bakeries = [dict(zip(columns, row)) for row in rows]
+    return jsonify(bakeries)
 
 
 
