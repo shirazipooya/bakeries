@@ -14,22 +14,46 @@
         <div class="divider-text fs-4">ویرایش پایگاه داده</div>
       </div>
     </div>
+
+
+
     <div class="col-12 mb-4">
       <div class="card p-3">
 
-        <div class="search-container py-3">
-          <form id="search-form" method="GET" action="/database" class="row g-3">
-            <div class="col-md-10">
+        <div class="search-container pb-4 ">
+          <!-- <form id="search-form" method="GET" action="/database" class="row g-3"> -->
+            <div class="col-12">
               <div class="input-group input-group-merge">
                 <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-                <input type="text" class="form-control" name="query" placeholder="جستجو ..." aria-label="جستجو ..."
-                  aria-describedby="basic-addon-search31" />
+                <!-- <input type="text" class="form-control" name="query" placeholder="جستجو ..." aria-label="جستجو ..." aria-describedby="basic-addon-search31" /> -->
+                <input type="text" class="form-control" placeholder="جستجو ..." hx-trigger="keyup changed delay:500ms, database" name="q" hx-post="/database" hx-target="#results" >
               </div>
             </div>
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
               <button type="submit" class="btn btn-primary w-100">جستجو</button>
+            </div> -->
+          <!-- </form> -->
+        </div>
+
+
+        <div class="col-12 mb-2">
+          <div class="divider divider-dashed">
+            <div class="divider-text fs-5">
+              <div id="paginationControls">
+                {% if page == 1 %}
+
+                {% else %}
+                <a href="{{ url_for('database', page=page - 1) }}" class="btn btn-secondary btn-sm">قبلی</a>
+                {% endif %}
+                <span>صفحه {{page}} از {{total_pages}}</span>
+                {% if page == total_pages %}
+
+                {% else %}
+                <a href="{{ url_for('database', page=page + 1) }}" class="btn btn-secondary btn-sm">بعدی</a>
+                {% endif %}
+              </div>
             </div>
-          </form>
+          </div>
         </div>
         <div class="table-responsive text-nowrap">
           <table class="table table-hover">
@@ -40,23 +64,9 @@
                 {% endfor %}
               </tr>
             </thead>
-            <tbody class="table-border-bottom-0" id="recordsTable">
-              {% for row in data %}
+            <tbody class="table-border-bottom-0" id="results">
+              {% for row in results %}
               <tr data-id="{{ row['ID'] }}">
-                <td>{{ row['ID'] }}</td>
-                <td>{{ row['FirstName'] }}</td>
-                <td>{{ row['LastName'] }}</td>
-                <td>{{ row['NID'] }}</td>
-                <td>{{ row['City'] }}</td>
-                <td>{{ row['Region'] }}</td>
-                <td>{{ row['District'] }}</td>
-                <td>{{ row['Lat'] }}</td>
-                <td>{{ row['Lon'] }}</td>
-                <td>{{ row['HouseholdRisk'] }}</td>
-                <td>{{ row['BakersRisk'] }}</td>
-                <td>{{ row['TypeFlour'] }}</td>
-                <td>{{ row['TypeBread'] }}</td>
-                <td>{{ row['BreadRations'] }}</td>
                 <td>
                   <div class="dropdown">
                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -73,6 +83,20 @@
                     </div>
                   </div>
                 </td>
+                <td>{{ row['ID'] }}</td>
+                <td>{{ row['FirstName'] }}</td>
+                <td>{{ row['LastName'] }}</td>
+                <td>{{ row['NID'] }}</td>
+                <td>{{ row['City'] }}</td>
+                <td>{{ row['Region'] }}</td>
+                <td>{{ row['District'] }}</td>
+                <td>{{ row['Lat'] }}</td>
+                <td>{{ row['Lon'] }}</td>
+                <td>{{ row['HouseholdRisk'] }}</td>
+                <td>{{ row['BakersRisk'] }}</td>
+                <td>{{ row['TypeFlour'] }}</td>
+                <td>{{ row['TypeBread'] }}</td>
+                <td>{{ row['BreadRations'] }}</td>
               </tr>
               {% endfor %}
             </tbody>
@@ -103,19 +127,7 @@
       </div>
     </div>
 
-    <div id="paginationControls" class="mx-auto">
-      {% if page == 1 %}
-      
-      {% else %}
-      <a href="{{ url_for('database', page=page - 1) }}" class="btn btn-secondary btn-sm">قبلی</a>
-      {% endif %}
-      <span>صفحه {{page}} از {{total_pages}}</span>
-      {% if page == total_pages %}
-      
-      {% else %}
-      <a href="{{ url_for('database', page=page + 1) }}" class="btn btn-secondary btn-sm">بعدی</a>
-      {% endif %}
-    </div>
+
 
   </div>
 
