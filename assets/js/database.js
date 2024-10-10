@@ -81,7 +81,7 @@ $("#confirmDelete").on("click", function () {
 
 function showEditModal(id) {
     const search = $("#search").val();
-    $.get(`/api/bakeries`, { search: search, page: 1 }, function(response) {
+    $.get(`/api/bakeries`, { search: search, page: currentPage }, function(response) {
         const bakery = response.data.find(b => b.ID === id);
         $('#editID').val(bakery.ID);
         $('#editFirstName').val(bakery.FirstName);
