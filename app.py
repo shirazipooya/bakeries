@@ -308,6 +308,140 @@ def update_bakery(id):
     conn.close()
     return jsonify({'message': 'Bakery Updated Successfully'})
 
+
+
+@app.route(rule='/api/cities', methods=['GET'])
+def get_cities():
+    conn = sqlite3.connect(DATABASE_NAME)
+    cur = conn.cursor()
+    query = f'SELECT DISTINCT City FROM {BAKERISE_TABLE_NAME}'
+    args = ()
+    cur.execute(query, args)
+    data = cur.fetchall()
+    data.sort()
+    conn.close()
+    return jsonify([city[0] for city in data])
+
+
+@app.route(rule='/api/regions/<city>', methods=['GET'])
+def get_regions(city):
+    conn = sqlite3.connect(DATABASE_NAME)
+    cur = conn.cursor()
+    query = f'SELECT DISTINCT REGION FROM {BAKERISE_TABLE_NAME} WHERE CITY = ?'
+    args = (city,)
+    cur.execute(query, args)
+    data = cur.fetchall()
+    data.sort()
+    conn.close()
+    return jsonify([region[0] for region in data])
+
+
+@app.route(rule='/api/districts/<region>/<city>', methods=['GET'])
+def get_districts(city, region):
+    conn = sqlite3.connect(DATABASE_NAME)
+    cur = conn.cursor()
+    query = f'SELECT DISTINCT DISTRICT FROM {BAKERISE_TABLE_NAME} WHERE CITY = ? AND REGION = ?'
+    args = (city, region)
+    cur.execute(query, args)
+    data = cur.fetchall()
+    data.sort()
+    conn.close()
+    return jsonify([district[0] for district in data])
+
+
+
+@app.route(rule='/api/filtered/<city>/<region>/<district>/<typebread>', methods=['GET'])
+def get_filtered_data(city, region, district, typebread):
+    if typebread == "999":
+        if city == "999" and region == "999" and district == "999":
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME}'
+            data = query_db(query=query, args=(), database=DATABASE_NAME)
+        elif region == "999" and district == "999":
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE CITY = ?'
+            data = query_db(query=query, args=(city, ), database=DATABASE_NAME)
+        elif district == "999":
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE CITY = ? AND REGION = ?'
+            data = query_db(query=query, args=(city, region), database=DATABASE_NAME)
+        else:        
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE CITY = ? AND REGION = ? AND DISTRICT = ?'
+            data = query_db(query=query, args=(city, region, district), database=DATABASE_NAME)
+    else:
+        if city == "999" and region == "999" and district == "999":
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE TypeBread = ?'
+            data = query_db(query=query, args=(typebread,), database=DATABASE_NAME)
+        elif region == "999" and district == "999":
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE CITY = ? AND TypeBread = ?'
+            data = query_db(query=query, args=(city, typebread), database=DATABASE_NAME)
+        elif district == "999":
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE CITY = ? AND REGION = ? AND TypeBread = ?'
+            data = query_db(query=query, args=(city, region, typebread), database=DATABASE_NAME)
+        else:        
+            query = f'SELECT * FROM {BAKERISE_TABLE_NAME} WHERE CITY = ? AND REGION = ? AND DISTRICT = ? AND TypeBread = ?'
+            data = query_db(query=query, args=(city, region, district, typebread), database=DATABASE_NAME)
+        
+    
+    response = {
+        'data': data,
+    }
+    
+    return jsonify(response)
+
+
+
+@app.route(rule='/api/typeBread', methods=['GET'])
+def get_typeBread():
+    conn = sqlite3.connect(DATABASE_NAME)
+    cur = conn.cursor()
+    query = f'SELECT DISTINCT TypeBread FROM {BAKERISE_TABLE_NAME}'
+    args = ()
+    cur.execute(query, args)
+    data = cur.fetchall()
+    data.sort()
+    conn.close()
+    return jsonify([typeBread[0] for typeBread in data])
+
+
+
+
+@app.route(rule='/map-search', methods=['GET'])
+def map_search():
+    se = request.args.get('query', '')
+    if se == '':
+        data = query_db(
+            query=f'SELECT * FROM {BAKERISE_TABLE_NAME}',
+            args=[]
+        )
+    else:
+        data = query_db(
+            query=f"""
+                SELECT COUNT(*) FROM {BAKERISE_TABLE_NAME}
+                WHERE
+                    FirstName LIKE ? OR
+                    LastName LIKE ? OR
+                    NID LIKE ? OR
+                    City LIKE ? OR
+                    Region LIKE ? OR
+                    District LIKE ? OR
+                    Lat LIKE ? OR
+                    Lon LIKE ? OR
+                    HouseholdRisk LIKE ? OR
+                    BakersRisk LIKE ? OR
+                    TypeFlour LIKE ? OR
+                    TypeBread LIKE ? OR
+                    BreadRations LIKE ?
+            """,
+            args=[f'%{se}%'] * 13
+        )
+        
+    response = {
+        "data": data,
+    }
+    
+    return jsonify(response)
+
+
+
+
 if __name__ == "__main__":
     app.run(
         host="127.0.0.1",

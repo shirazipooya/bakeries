@@ -218,4 +218,36 @@
         }
     }
 
+    document.getElementById('apply_filter').addEventListener('click', function () {
+        let citySelect = document.getElementById('city').value;
+        let regionSelect = document.getElementById('region').value;
+        let districtSelect = document.getElementById('district').value;
+        let typeBreadSelect = document.getElementById('typeBread').value;
+
+        if (!citySelect) {
+            citySelect = "999";
+        }
+        if (!regionSelect) {
+            regionSelect = "999";
+        }
+        if (!districtSelect) {
+            districtSelect = "999";
+        }
+        if (!typeBreadSelect) {
+            typeBreadSelect = "999";
+        }
+
+        fetch(`/api/filtered/${citySelect}/${regionSelect}/${districtSelect}/${typeBreadSelect}`)
+        .then(response => response.json())
+        .then(data => {
+            addMarkers(data.data);
+        });
+    });
+
+    document.getElementById('clear_filter').addEventListener('click', function () {
+        document.getElementById('region').innerHTML = '<option value="">منطقه را انتخاب کنید ...</option>';
+        document.getElementById('district').innerHTML = '<option value="">ناحیه را انتخاب کنید ...</option>';
+        get_all_data();
+    });
+
 })();

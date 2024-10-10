@@ -383,48 +383,49 @@
             <label class="form-label mb-1" for="city">
               شهر
             </label>
-            <select id="city" class="select2 form-select" data-placeholder="شهر را انتخاب کنید ...">
+            <select id="city" class="form-select" data-placeholder="شهر را انتخاب کنید ...">
+              <option value="">شهر را انتخاب کنید ...</option>
             </select>
           </div>
 
-          <!-- Mantagheh -->
+          <!-- Region -->
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1 d-flex justify-content-between align-items-center" for="category-org">
+            <label class="form-label mb-1" for="region">
               <span>منطقه</span>
             </label>
-            <select id="category-org" class="select2 form-select" data-placeholder="منطقه را انتخاب کنید ...">
+            <select id="region" name="region" class="form-select" data-placeholder="منطقه را انتخاب کنید ...">
+              <option value="">منطقه را انتخاب کنید ...</option>
             </select>
           </div>
 
-          <!-- Nahieh -->
+          <!-- District -->
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="collection">ناحیه
+            <label class="form-label mb-1" for="district">ناحیه
             </label>
-            <select id="collection" class="select2 form-select" data-placeholder="ناحیه را انتخاب کنید ...">
+            <select id="district" class="form-select" data-placeholder="ناحیه را انتخاب کنید ...">
+              <option value="">ناحیه را انتخاب کنید ...</option>
             </select>
           </div>
 
-          <!-- Status -->
+          <!-- Type Bread -->
           <div class="mb-3 col ecommerce-select2-dropdown">
-            <label class="form-label mb-1" for="status-org">Status
+            <label class="form-label mb-1" for="typeBread">نوع نان
             </label>
-            <select id="status-org" class="select2 form-select" data-placeholder="Published">
-              <option value="">Published</option>
-              <option value="Published">Published</option>
-              <option value="Scheduled">Scheduled</option>
-              <option value="Inactive">Inactive</option>
+            <select id="typeBread" class="form-select" data-placeholder="نوع نان را انتخاب کنید ...">
+              <option value="">نوع نان را انتخاب کنید ...</option>
             </select>
           </div>
-          <di class="row">
+
+          <div class="row">
             <div class="demo-inline-spacing justify-content-center d-inline-flex">
-              <button type="button" class="btn rounded-pill btn-label-primary">
-                <span class="tf-icons bx bx-plus-circle me-1"></span>اعمال
+              <button type="button" class="btn rounded-pill btn-label-primary" id="apply_filter">
+                <span class="tf-icons bx bx-plus-circle me-1"></span>اعمال فیلتر
               </button>
-              <button type="button" class="btn rounded-pill btn-label-secondary">
-                <span class="tf-icons bx bx-minus-circle me-1"></span>حذف
+              <button type="button" class="btn rounded-pill btn-label-secondary" id="clear_filter">
+                <span class="tf-icons bx bx-minus-circle me-1"></span>حذف فیلتر
               </button>
             </div>
-          </di>
+          </div>
         </div>
       </div>
 
@@ -440,7 +441,7 @@
   <!--/ Cards with badge -->
 
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-12 mb-2">
       <div class="divider">
         <div class="divider-text fs-4">نمودار اشعه خورشیدی</div>
@@ -461,10 +462,10 @@
         <div id="sunburst"></div>
       </div>
     </div>
-    <div class="col-md-12 col-lg-6 col-xl-6  order-3 order-lg-0 mb-4">
+    <!-- <div class="col-md-12 col-lg-6 col-xl-6  order-3 order-lg-0 mb-4">
       <div class="card">
       </div>
-    </div>
+    </div> -->
   </div>
 
 
